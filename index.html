@@ -42,14 +42,57 @@
         color: #b83b5e;
         border: 2px solid #b83b5e;
       }
+      .heart {
+        width: 100px;
+        height: 90px;
+        position: relative;
+        margin: 0 auto;
+        transform: translateY(30%);
+      }
+      .heart:before,
+      .heart:after {
+        content: "";
+        position: absolute;
+        left: 50px;
+        top: 0;
+        width: 50px;
+        height: 80px;
+        background: #e33b5e;
+        border-radius: 50px 50px 0 0;
+        transform: rotate(-45deg);
+        transform-origin: 0 100%;
+      }
+      .heart:after {
+        left: 0;
+        transform: rotate(45deg);
+        transform-origin: 100% 100%;
+      }
     </style>
   </head>
-  <body>
+  <body onload="animateHeart()">
     <div class="container">
       <h1>Happy International Women's Day!</h1>
       <p>Today we celebrate the achievements of women around the world.</p>
       <p>Happy International Women's Day to all the incredible women out there! Today we celebrate you and all that you bring to our world. Your strength, wisdom, and unique perspective make our lives richer and more meaningful. Whether you're a mother, daughter, sister, friend, colleague, or all of the above, you are appreciated and valued. Your contributions to society are immeasurable, and we thank you for all that you do. Let's continue to strive for equality and empower each other to reach our full potential. Here's to a future where every woman can live her life to the fullest, free from discrimination and inequality. </p>
       <button onclick="alert('You are amazing! Keep up the great work!')">Click me!</button>
+      <div class="heart"></div>
     </div>
+    <script>
+      function animateHeart() {
+        const heart = document.querySelector('.heart');
+        let size = 10;
+        let opacity = 1;
+        let interval = setInterval(function() {
+          heart.style.width = size + "px";
+          heart.style.height = size * 0.9 + "px";
+          heart.style.opacity = opacity;
+          size += 10;
+          opacity -= 0.1;
+          if (size > 100) {
+            clearInterval(interval);
+          }
+        }, 50);
+      }
+    </script>
   </body>
 </html>
