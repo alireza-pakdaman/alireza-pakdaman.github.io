@@ -1,18 +1,15 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-html, body {
+html, body { 
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: Arial, sans-serif;
   line-height: 1.6;
   background-color: #1A4B73;
   min-height: 100%;
-  overflow-x: hidden;
 }
 
 .container {
@@ -32,12 +29,10 @@ nav a {
   color: white;
   text-decoration: none;
   margin: 0 1rem;
-  font-weight: 700;
-  transition: color 0.3s ease;
 }
 
 nav a:hover {
-  color: #1A4B73;
+  text-decoration: underline;
 }
 
 header {
@@ -63,8 +58,8 @@ main {
   min-height: calc(100% - 151px);
   box-sizing: border-box;
   padding: 2rem;
-  margin-bottom: 1rem;
 }
+
 
 .project {
   display: flex;
@@ -82,30 +77,13 @@ main {
   margin-top: 1rem;
 }
 
-/* Introduction styles */
-#introduction {
-  background-color: #f1f1f1;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-#introduction h2 {
-  color: #1A4B73;
-  margin-bottom: 1rem;
-}
-
-#introduction p {
-  color: #333;
-  font-size: 1.1rem;
-}
-
-
+/* Footer styles */
 footer {
   background-color: #1A4B73;
   color: white;
   text-align: center;
   padding: 1rem 0;
+  position: absolute;
+  bottom: 0;
   width: 100%;
 }
