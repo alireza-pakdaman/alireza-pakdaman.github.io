@@ -1,9 +1,9 @@
 $(document).ready(function() {
   $('.header-image img').animate({
-    opacity: 0.25,
+    opacity: 0.65,
   }, 0).animate({
     opacity: 1,
-  }, 2000);
+  }, 1500);
 
 
   // Smooth scrolling for internal links
