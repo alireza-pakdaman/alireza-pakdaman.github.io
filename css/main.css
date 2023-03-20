@@ -1,4 +1,3 @@
-
 html, body { 
   height: 100%;
   margin: 0;
@@ -58,8 +57,8 @@ main {
   min-height: calc(100% - 151px);
   box-sizing: border-box;
   padding: 2rem;
+  margin-bottom: 1rem;
 }
-
 
 .project {
   display: flex;
@@ -77,13 +76,30 @@ main {
   margin-top: 1rem;
 }
 
+/* Introduction styles */
+#introduction {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+#introduction h2 {
+  color: #1A4B73;
+  margin-bottom: 1rem;
+}
+
+#introduction p {
+  color: #333;
+  font-size: 1.1rem;
+}
+
 /* Footer styles */
 footer {
   background-color: #1A4B73;
   color: white;
   text-align: center;
   padding: 1rem 0;
-  position: absolute;
-  bottom: 0;
   width: 100%;
 }
