@@ -41,6 +41,9 @@ nav a:hover {
 }
 
 header {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
   text-align: center;
   padding: 2rem 0;
   background-color: #1A4B73;
