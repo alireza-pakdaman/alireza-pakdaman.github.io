@@ -237,3 +237,36 @@
 .progress.bootstrap {
   background-color: #7952B3;
 }
+#social-media {
+  padding: 50px 0;
+  background-color: #f8f8f8;
+}
+
+#social-media h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+}
+
+.social-icons a {
+  margin-right: 20px;
+}
+
+.social-icons a:last-child {
+  margin-right: 0;
+}
+
+.social-icons i {
+  font-size: 24px;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.social-icons i:hover {
+  color: #4078c0;
+}
