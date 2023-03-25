@@ -19,16 +19,24 @@
 
   nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     background-color: #333;
     padding: 1rem 0;
   }
   @media screen and (max-width: 768px) {
-    .navbar-nav .iran-flag {
-      margin-right: 0;
+    nav .nav-item:last-child img {
+      margin-right: 20px;
+      margin-left: 15px;
+      width: 30px;
     }
   }
-    
+  .flag {
+    margin-left: 20px;
+    margin-right: 10px;
+    width: 30px;
+  }
+  
+  
 
   nav a {
     color: white;
