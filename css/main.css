@@ -306,3 +306,59 @@
   color: white;
 }
 
+.fas.fa-brain {
+  font-size: 4rem;
+  color: #FF6F91;
+  margin-bottom: 0.5rem;
+  }
+  
+  .fas.fa-chart-line {
+  font-size: 4rem;
+  color: #4DD0E1;
+  margin-bottom: 0.5rem;
+  }
+  
+  .fas.fa-globe {
+  font-size: 4rem;
+  color: #FFCA28;
+  margin-bottom: 0.5rem;
+  }
+  
+  .fas.fa-database {
+  font-size: 4rem;
+  color: #7E57C2;
+  margin-bottom: 0.5rem;
+  }
+  
+  .progress.tensorflow {
+  background-color: #FF6F91;
+  height: 5px;
+  }
+  
+  .progress.scikit-learn {
+  background-color: #4DD0E1;
+  height: 5px;
+  }
+  
+  .progress.nlp {
+  background-color: #FFCA28;
+  height: 5px;
+  }
+  
+  .progress.pandas {
+  background-color: #7E57C2;
+  height: 5px;
+  }
+  
+  /* Adjust the skill width for smaller screens */
+  @media screen and (max-width: 768px) {
+  .skill {
+  width: calc(50% - 1rem);
+  }
+  }
+  
+  @media screen and (max-width: 480px) {
+  .skill {
+  width: 100%;
+  }
+  }
