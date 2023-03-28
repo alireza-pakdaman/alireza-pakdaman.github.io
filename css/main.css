@@ -600,3 +600,16 @@
   width: 100%;
   }
   }
+.utterances {
+  max-width: 100%;
+  margin-top: 50px;
+}
+
+.utterances-frame {
+  width: 100%;
+  border: none;
+  background-color: #f6f8fa;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
