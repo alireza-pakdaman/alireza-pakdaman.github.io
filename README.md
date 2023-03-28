@@ -1,4 +1,4 @@
-# My's Portfolio
+# My Portfolio
 
 This repository contains the source code for Arshia Pakdamanshahri's personal portfolio website. The website showcases Arshia's skills, projects, and contact information.
 
