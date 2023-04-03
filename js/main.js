@@ -1,3 +1,42 @@
+let activeIndex = 0;
+
+const groups = document.getElementsByClassName("card-group");
+
+const handleLoveClick = () => {
+  const nextIndex = activeIndex + 1 <= groups.length - 1 ? activeIndex + 1 : 0;
+  
+  const currentGroup = document.querySelector(`[data-index="${activeIndex}"]`),
+        nextGroup = document.querySelector(`[data-index="${nextIndex}"]`);
+        
+  currentGroup.dataset.status = "after";
+  
+  nextGroup.dataset.status = "becoming-active-from-before";
+  
+  setTimeout(() => {
+    nextGroup.dataset.status = "active";
+    activeIndex = nextIndex;
+  });
+}
+
+const handleHateClick = () => {
+  const nextIndex = activeIndex - 1 >= 0 ? activeIndex - 1 : groups.length - 1;
+  
+  const currentGroup = document.querySelector(`[data-index="${activeIndex}"]`),
+        nextGroup = document.querySelector(`[data-index="${nextIndex}"]`);
+  
+  currentGroup.dataset.status = "before";
+  
+  nextGroup.dataset.status = "becoming-active-from-after";
+  
+  setTimeout(() => {
+    nextGroup.dataset.status = "active";
+    activeIndex = nextIndex;
+  });
+}
+
+
+
+
 $(document).ready(function() {
   $('.header-image img').animate({
     opacity: 0.65,
@@ -52,3 +91,26 @@ backToTopButton.addEventListener("click", function() {
   smoothScroll("#header", 1000);
 });
 }
+
+const cards = document.getElementById("cards");
+
+cards.addEventListener("mouseover", function() {
+  let intervalId = setInterval(function() {
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    let rgb = `rgb(${r},${g},${b})`;
+    document.body.style.cursor = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='6' fill='${rgb}'/%3E%3C/svg%3E"),none`;
+  }, 100);
+  cards.addEventListener("mouseout", function() {
+    clearInterval(intervalId);
+    document.body.style.cursor = "default";
+  });
+});
+
+
+
+
+
+
+
