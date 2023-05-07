@@ -94,19 +94,44 @@ backToTopButton.addEventListener("click", function() {
 
 const cards = document.getElementById("cards");
 
-cards.addEventListener("mouseover", function() {
-  let intervalId = setInterval(function() {
-    let r = Math.floor(Math.random() * 256);
-    let g = Math.floor(Math.random() * 256);
-    let b = Math.floor(Math.random() * 256);
-    let rgb = `rgb(${r},${g},${b})`;
-    document.body.style.cursor = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='6' fill='${rgb}'/%3E%3C/svg%3E"),none`;
-  }, 100);
-  cards.addEventListener("mouseout", function() {
-    clearInterval(intervalId);
-    document.body.style.cursor = "default";
+if (cards) {
+  cards.addEventListener("mouseover", function() {
+    let intervalId = setInterval(function() {
+      let r = Math.floor(Math.random() * 256);
+      let g = Math.floor(Math.random() * 256);
+      let b = Math.floor(Math.random() * 256);
+      let rgb = `rgb(${r},${g},${b})`;
+      document.body.style.cursor = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='6' fill='${rgb}'/%3E%3C/svg%3E"),none`;
+    }, 100);
+    cards.addEventListener("mouseout", function() {
+      clearInterval(intervalId);
+      document.body.style.cursor = "default";
+    });
   });
-});
+}
+
+  const darkModeToggle = document.getElementById("darkModeToggle");
+  const html = document.documentElement;
+
+  // Check if dark mode preference is saved in localStorage
+  if (localStorage.getItem("darkMode") === "true") {
+    html.setAttribute("data-theme", "dark");
+    darkModeToggle.checked = true;
+  } else {
+    html.removeAttribute("data-theme");
+    darkModeToggle.checked = false;
+  }
+
+  darkModeToggle.addEventListener("change", function () {
+    if (this.checked) {
+      html.setAttribute("data-theme", "dark");
+      localStorage.setItem("darkMode", "true");
+    } else {
+      html.removeAttribute("data-theme");
+      localStorage.setItem("darkMode", "false");
+    }
+  });
+
 
 
 
