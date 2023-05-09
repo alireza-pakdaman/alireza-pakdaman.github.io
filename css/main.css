@@ -132,18 +132,16 @@ background-color: var(--btn-resume-option-regular-hover-bg-color);
 .view-more-btn:hover {
   background-color: #34495e;
 }
-.container {
-  max-width: 1200px;
+body .container {
+  max-width: 2000px !important;
   margin: 0 auto;
   padding: 0 1rem;
 }
 nav {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
   background-color: var(--nav-bg-color);
-  padding: 1rem;
-  position: relative; /* Add this line */
+  padding: 1rem 0;
 }
 @media screen and (max-width: 768px) {
   nav .nav-item:last-child img {
