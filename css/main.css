@@ -133,7 +133,7 @@ background-color: var(--btn-resume-option-regular-hover-bg-color);
   background-color: #34495e;
 }
 body .container {
-  max-width: 2000px !important;
+  max-width: 2400px !important;
   margin: 0 auto;
   padding: 0 1rem;
 }
