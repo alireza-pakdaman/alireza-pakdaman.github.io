@@ -443,6 +443,25 @@ background-color: #264DE4;
 .progress.bootstrap {
 background-color: #7952B3;
 }
+.skill .fa-server {
+color: #44759e;
+}
+
+.progress.sql {
+  background-color: #44759e;
+}
+
+.skill .fa-github {
+  color: #211F1F;
+}
+
+.progress.github {
+  background-color: #211F1F;
+}
+ 
+
+
+
 #social-media {
 padding: 50px 0;
 background-color: var(--social-media-bg-color);
