@@ -139,9 +139,11 @@ background-color: var(--btn-resume-option-regular-hover-bg-color);
 }
 nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   background-color: var(--nav-bg-color);
-  padding: 1rem 0;
+  padding: 1rem;
+  position: relative; /* Add this line */
 }
 @media screen and (max-width: 768px) {
   nav .nav-item:last-child img {
