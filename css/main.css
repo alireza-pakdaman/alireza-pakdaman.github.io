@@ -3,7 +3,7 @@
   --bg-color: #1A4B73;
   --header-bg-color: #1A4B73;
   --nav-bg-color: #333;
-  --text-color: #333;
+  --text-color: #212121;
   --light-text-color: #fff;
   --main-bg-color: white;
   --introduction-bg-color: #f1f1f1;
@@ -24,7 +24,7 @@
 [data-theme="dark"] {
   --bg-color: #222831;
   --header-bg-color: #222831;
-  --nav-bg-color: #393e46;
+  --nav-bg-color: #222222;
   --text-color: #d3d3d3;
   --light-text-color: #eee;
   --main-bg-color: #393e46;
