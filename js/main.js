@@ -44,18 +44,21 @@ $(document).ready(function() {
     opacity: 1,
   }, 1500);
 
-
+});
   // Smooth scrolling for internal links
-  $('a[href^="#"]').on('click', function(event) {
-    var target = $(this.getAttribute('href'));
+ $('a[href^="#"]').on('click', function(event) {
+  var href = this.getAttribute('href');
+  if (href.length > 1) { // Exclude anchors with href of just '#'
+    var target = $(href);
     if( target.length ) {
       event.preventDefault();
       $('html, body').animate({
         scrollTop: target.offset().top
       }, 1000);
     }
-  });
+  }
 });
+
 
 // Smooth Scrolling
 function smoothScroll(target, duration) {
