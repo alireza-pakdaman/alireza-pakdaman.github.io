@@ -1,0 +1,126 @@
+---
+import { experience } from '../data/profile';
+---
+
+<ol class="timeline">
+  {
+    experience.map((r) => (
+      <li class="timeline-item reveal">
+        <div class="tl-marker" aria-hidden="true" />
+        <div class="tl-content">
+          <p class="tl-dates">
+            {r.start} — {r.end}
+            {r.location && <span class="tl-loc"> · {r.location}</span>}
+          </p>
+          <h3 class="tl-title">
+            {r.title} <span class="tl-org">@ {r.org}</span>
+          </h3>
+          {r.summary && <p class="tl-summary">{r.summary}</p>}
+          {r.tags && (
+            <p class="tl-tags">
+              {r.tags.map((t) => (
+                <span class="chip">{t}</span>
+              ))}
+            </p>
+          )}
+        </div>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--line);
+  }
+
+  /* The rail "draws" itself as the section scrolls through the viewport. */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .timeline::before {
+        transform-origin: top;
+        animation: tl-draw linear both;
+        animation-timeline: view();
+        animation-range: entry 10% exit 60%;
+      }
+    }
+  }
+
+  @keyframes tl-draw {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 12px 1fr;
+    gap: 1.4rem;
+    padding-bottom: 2.4rem;
+  }
+
+  .timeline-item:last-child {
+    padding-bottom: 0.5rem;
+  }
+
+  .tl-marker {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2.5px solid var(--accent);
+    margin-top: 6px;
+    box-shadow: var(--glow);
+  }
+
+  .tl-dates {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    margin: 0 0 0.25rem;
+  }
+
+  .tl-loc {
+    color: var(--ink-3-solid);
+  }
+
+  .tl-title {
+    font-size: 1.12rem;
+    margin: 0 0 0.35rem;
+  }
+
+  .tl-org {
+    color: var(--ink-2);
+    font-weight: 500;
+  }
+
+  .tl-summary {
+    color: var(--ink-2);
+    font-size: 0.95rem;
+    margin: 0 0 0.55rem;
+    max-width: 56ch;
+  }
+
+  .tl-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin: 0;
+  }
+</style>

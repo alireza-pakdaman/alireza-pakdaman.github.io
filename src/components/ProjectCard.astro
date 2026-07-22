@@ -1,0 +1,100 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, tagline, year, stack, hue } = project.data;
+const href = `/projects/${project.id}`;
+---
+
+<a class="project-card card" href={href} style={`--hue: ${hue}`}>
+  <div class="card-art" transition:name={`art-${project.id}`} aria-hidden="true">
+    <span class="card-glyph">{String(project.data.order).padStart(2, '0')}</span>
+  </div>
+  <div class="card-body">
+    <h3 class="card-title" transition:name={`title-${project.id}`}>{title}</h3>
+    <p class="card-tagline">{tagline}</p>
+    <p class="card-meta">
+      <span class="card-year">{year}</span>
+      {stack.slice(0, 3).map((s) => <span class="chip">{s}</span>)}
+    </p>
+  </div>
+</a>
+
+<style>
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--card-shadow-hover);
+      border-color: oklch(62% 0.13 var(--hue));
+    }
+  }
+
+  .card-art {
+    position: relative;
+    aspect-ratio: 21 / 9;
+    background:
+      radial-gradient(120% 160% at 15% 0%, oklch(72% 0.14 var(--hue) / 0.55), transparent 60%),
+      radial-gradient(130% 140% at 90% 110%, oklch(55% 0.16 calc(var(--hue) + 40) / 0.5), transparent 55%),
+      linear-gradient(160deg, oklch(from var(--bg-inset) l c h), oklch(from var(--bg-raised) l c h));
+    border-bottom: 1px solid var(--line);
+  }
+
+  .card-glyph {
+    position: absolute;
+    right: 0.9rem;
+    bottom: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: oklch(50% 0.16 var(--hue) / 0.5);
+    letter-spacing: -0.05em;
+  }
+
+  .card-body {
+    padding: 1.1rem 1.25rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    flex: 1;
+  }
+
+  .card-title {
+    font-size: 1.18rem;
+    margin: 0;
+  }
+
+  .card-tagline {
+    color: var(--ink-2);
+    font-size: 0.92rem;
+    margin: 0;
+    flex: 1;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+    margin: 0.55rem 0 0;
+  }
+
+  .card-year {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--ink-3-solid);
+    margin-right: 0.2rem;
+  }
+</style>

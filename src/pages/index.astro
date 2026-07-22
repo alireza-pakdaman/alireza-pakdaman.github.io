@@ -1,0 +1,442 @@
+---
+import { getCollection } from 'astro:content';
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Timeline from '../components/Timeline.astro';
+import GitHubActivity from '../components/GitHubActivity.astro';
+import { profile, skills, education, certifications } from '../data/profile';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const featured = projects.filter((p) => p.data.featured);
+
+// Portrait is optional: drop profile.jpg (or .png/.webp) into src/assets/images
+// and it appears here on the next build; until then, a monogram placeholder.
+const portraits = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/images/profile.{jpg,jpeg,png,webp,avif}',
+  { eager: true }
+);
+const portrait = Object.values(portraits)[0]?.default;
+
+const description =
+  'Alireza Pakdaman — software engineer and CS undergrad at Ontario Tech University (2027). C++, Python, TypeScript; data analysis and generative AI, from statistical pipelines to AI visuals for live opera.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  jobTitle: 'Software Engineer',
+  email: `mailto:${profile.email}`,
+  url: profile.site,
+  sameAs: [profile.github, profile.linkedin],
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Ontario Tech University',
+  },
+  address: { '@type': 'PostalAddress', addressLocality: 'Greater Toronto Area', addressCountry: 'CA' },
+};
+---
+
+<Base title="Alireza Pakdaman — Software Engineer" description={description} ogSlug="site">
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+
+  <!-- ============================================================ hero -->
+  <section class="hero container" aria-label="Introduction">
+    <div class="hero-copy">
+      <p class="mono-label">software engineer · greater toronto area</p>
+      <h1 class="hero-name">Alireza<br />Pakdaman</h1>
+      <p class="hero-tagline">{profile.tagline}</p>
+      <p class="hero-status">
+        <span class="status-dot" aria-hidden="true"></span>
+        Open to internships &amp; co-op roles · BSc CS, Ontario Tech ’27
+      </p>
+      <div class="hero-actions">
+        <a class="btn" href="#projects" data-magnetic>View projects</a>
+        <a class="btn btn-ghost" href="/resume.pdf" data-magnetic>Resume — PDF</a>
+      </div>
+      <p class="hero-contact">
+        <a href={profile.github} target="_blank" rel="noopener">GitHub</a>
+        <span aria-hidden="true">·</span>
+        <a href={profile.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+        <span aria-hidden="true">·</span>
+        <a href={`mailto:${profile.email}`}>{profile.email}</a>
+      </p>
+    </div>
+    <div class="hero-visual" aria-hidden={portrait ? undefined : 'true'}>
+      {
+        portrait ? (
+          <Picture
+            src={portrait}
+            alt="Portrait of Alireza Pakdaman"
+            width={440}
+            formats={['avif', 'webp']}
+            class="hero-portrait"
+            loading="eager"
+          />
+        ) : (
+          <div class="hero-monogram">
+            <span class="hero-monogram-text">ap<span class="brand-cursor">_</span></span>
+            <span class="hero-monogram-note">// portrait loads here</span>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <!-- ======================================================== projects -->
+  <section id="projects" class="section container" aria-labelledby="projects-h">
+    <div class="section-head">
+      <p class="mono-label">selected work</p>
+      <h2 id="projects-h">Projects</h2>
+    </div>
+    <div class="projects-grid">
+      {featured.map((p) => <ProjectCard project={p} />)}
+    </div>
+    <p class="section-foot">
+      Want the interactive version? Try the <a href="/playground">component playground</a> — live, editable code
+      from this site.
+    </p>
+  </section>
+
+  <!-- ====================================================== experience -->
+  <section id="experience" class="section container" aria-labelledby="experience-h">
+    <div class="section-head">
+      <p class="mono-label">where i’ve worked</p>
+      <h2 id="experience-h">Experience</h2>
+    </div>
+    <Timeline />
+  </section>
+
+  <!-- ========================================================== skills -->
+  <section id="skills" class="section container" aria-labelledby="skills-h">
+    <div class="section-head">
+      <p class="mono-label">the toolbox</p>
+      <h2 id="skills-h">Skills</h2>
+    </div>
+    <div class="skills-layout">
+      <div class="skills-groups">
+        {
+          skills.map((g) => (
+            <div class="skill-group reveal">
+              <h3>{g.group}</h3>
+              <ul>
+                {g.items.map((item) => (
+                  <li class="chip">{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+      <GitHubActivity />
+    </div>
+  </section>
+
+  <!-- ======================================================= education -->
+  <section id="education" class="section container" aria-labelledby="education-h">
+    <div class="section-head">
+      <p class="mono-label">foundation</p>
+      <h2 id="education-h">Education</h2>
+    </div>
+    <div class="edu-layout">
+      <div class="card edu-card reveal">
+        <p class="tl-dates-like">{education.start} — {education.end}</p>
+        <h3>{education.degree}</h3>
+        <p class="edu-school">{education.school}</p>
+      </div>
+      <div class="card edu-card reveal">
+        <h3 class="certs-title">Certifications</h3>
+        <ul class="certs-list">
+          {certifications.map((c) => <li>{c}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= contact -->
+  <section id="contact" class="section container" aria-labelledby="contact-h">
+    <div class="contact-cta card">
+      <div>
+        <h2 id="contact-h">Let’s build something.</h2>
+        <p>
+          I’m looking for teams where I can ship real software and keep learning — internships, co-ops, and
+          early-career roles.
+        </p>
+      </div>
+      <div class="contact-actions">
+        <a class="btn" href={`mailto:${profile.email}`} data-magnetic>Email me</a>
+        <a class="btn btn-ghost" href={profile.linkedin} target="_blank" rel="noopener">Connect on LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ------------------------------------------------------------- hero */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    align-items: center;
+    gap: 3rem;
+    padding-block: clamp(3.5rem, 10vh, 7rem);
+  }
+
+  .hero-name {
+    font-size: clamp(2.9rem, 7.5vw, 5rem);
+    margin: 0.4rem 0 1.1rem;
+    letter-spacing: -0.03em;
+  }
+
+  .hero-tagline {
+    font-size: 1.15rem;
+    color: var(--ink-2);
+    max-width: 46ch;
+    margin-bottom: 1.1rem;
+  }
+
+  .hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--ink-2);
+    border: 1px solid var(--line);
+    border-radius: 99px;
+    padding: 0.4rem 0.9rem;
+    margin-bottom: 1.6rem;
+    background: var(--bg-raised);
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .status-dot {
+      animation: pulse 2.2s ease-out infinite;
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.45);
+    }
+    70% {
+      box-shadow: 0 0 0 9px rgba(34, 197, 94, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    }
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-contact {
+    font-size: 0.92rem;
+    color: var(--ink-3-solid);
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-visual {
+    justify-self: center;
+  }
+
+  :global(.hero-portrait) {
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    box-shadow: var(--card-shadow-hover);
+    max-width: min(100%, 380px);
+  }
+
+  .hero-monogram {
+    width: min(64vw, 320px);
+    aspect-ratio: 1;
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    background:
+      radial-gradient(130% 130% at 20% 10%, var(--accent-soft), transparent 60%),
+      var(--bg-raised);
+    display: grid;
+    place-content: center;
+    gap: 0.4rem;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+  }
+
+  .hero-monogram-text {
+    font-family: var(--font-mono);
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.04em;
+  }
+
+  .hero-monogram-note {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-3-solid);
+  }
+
+  @media (max-width: 840px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .hero-visual {
+      order: -1;
+      justify-self: start;
+    }
+
+    .hero-monogram {
+      display: none;
+    }
+  }
+
+  /* --------------------------------------------------------- projects */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+    gap: 1.4rem;
+  }
+
+  .section-foot {
+    margin-top: 1.6rem;
+    color: var(--ink-2);
+    font-size: 0.95rem;
+  }
+
+  /* ----------------------------------------------------------- skills */
+  .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 2.2rem;
+    align-items: start;
+  }
+
+  .skills-groups {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .skill-group h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0.55rem;
+    color: var(--ink-2);
+  }
+
+  .skill-group ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  @media (max-width: 840px) {
+    .skills-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* -------------------------------------------------------- education */
+  .edu-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4rem;
+    align-items: start;
+  }
+
+  .edu-card {
+    padding: 1.4rem 1.5rem;
+  }
+
+  .tl-dates-like {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    margin: 0 0 0.4rem;
+  }
+
+  .edu-card h3 {
+    margin: 0 0 0.25rem;
+    font-size: 1.15rem;
+  }
+
+  .edu-school {
+    color: var(--ink-2);
+    margin: 0;
+  }
+
+  .certs-title {
+    margin-bottom: 0.7rem;
+  }
+
+  .certs-list {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--ink-2);
+    font-size: 0.93rem;
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  @media (max-width: 720px) {
+    .edu-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ---------------------------------------------------------- contact */
+  .contact-cta {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    padding: clamp(1.8rem, 5vw, 3rem);
+    background:
+      radial-gradient(120% 180% at 90% 10%, var(--accent-soft), transparent 55%),
+      var(--bg-raised);
+  }
+
+  .contact-cta h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-cta p {
+    color: var(--ink-2);
+    margin: 0;
+    max-width: 46ch;
+  }
+
+  .contact-actions {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    justify-self: end;
+  }
+
+  @media (max-width: 720px) {
+    .contact-cta {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-actions {
+      justify-self: start;
+    }
+  }
+</style>

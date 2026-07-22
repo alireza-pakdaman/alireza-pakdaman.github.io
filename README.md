@@ -1,47 +1,44 @@
-# My Portfolio
+# arshiatech.me
 
-This repository contains the source code for Arshia Pakdamanshahri's personal portfolio website. The website showcases Arshia's skills, projects, and contact information.
+Personal portfolio of **Alireza Pakdaman** — software engineer, CS @ Ontario
+Tech University ('27). Live at [arshiatech.me](https://arshiatech.me).
 
-## Table of Contents
+## What's in here
 
-- [Technologies](#technologies)
-- [Installation](#installation)
-- [Features](#features)
-- [License](#license)
+- **[Astro](https://astro.build) islands architecture** — the homepage ships
+  ~zero JavaScript; React loads only on `/playground` for the live Sandpack
+  code editor.
+- **Native View Transitions** — project cards morph into detail pages; the
+  theme toggle sweeps a `clip-path` circle from the click point.
+- **Hand-rolled interaction** — spring-physics cursor, ⌘K command palette, and
+  a terminal easter egg (press `>`), all small vanilla TypeScript modules.
+- **Build-time data** — the GitHub activity chart is a static SVG rendered at
+  deploy time from the GitHub API (with a committed snapshot as fallback).
+- **Accessibility & performance as features** — keyboard navigable, visible
+  focus rings, `aria-live` announcements, `prefers-reduced-motion` fallbacks,
+  self-hosted subset fonts, AVIF/WebP images.
 
-## Technologies
+## Development
 
-The following technologies were used in the development of this portfolio website:
+```sh
+npm install
+npm run dev       # local dev server
+npm run build     # production build → dist/
+npm run preview   # serve the production build locally
+```
 
-- HTML5
-- CSS3
-- JavaScript
-- jQuery
-- Bootstrap 5
-- Font Awesome
+## Editing content (no code required)
 
-## Installation
+| What | Where |
+| --- | --- |
+| Projects | `src/content/projects/*.md` — one markdown file per project. Delete a file to remove it from the site; look for `TODO(Alireza)` comments to fill in details. |
+| Jobs, skills, education, links | `src/data/profile.ts` |
+| Portrait & project images | drop files into `src/assets/images/` — see the README in that folder |
+| Resume | replace `public/resume.pdf` |
 
-To get started, follow the steps below:
-
-1. Clone the repository to your local machine:
-git clone https://github.com/yourusername/arshia-portfolio.git
-
-2. Change the directory to the project folder:
-cd arshia-portfolio
-
-3. Open the `index.html` file in your preferred web browser to view the website.
-
-## Features
-
-The website includes the following sections:
-
-- Introduction: A brief overview of Arshia's background, interests, and expertise.
-- Skills: Displays Arshia's programming and technology-related skills, including Python, JavaScript, Node.js, HTML5, CSS3, and Bootstrap.
-- Featured Projects: Highlights some of Arshia's most significant projects.
-- Resume: Provides links to download Arshia's technical and regular resumes.
-- Social Media: Displays links to Arshia's social media profiles, including GitHub, YouTube, Twitter, Instagram, and LinkedIn.
+Every push to `main` triggers the GitHub Actions workflow, which builds the
+site and deploys it to GitHub Pages (custom domain via `public/CNAME`).
 
 ## License
 
-This project is licensed under the MIT License. For more information, see the [LICENSE](LICENSE) file.
+Code is MIT licensed. Content (text, images, resume) is © Alireza Pakdaman.

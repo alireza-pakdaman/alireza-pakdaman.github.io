@@ -1,0 +1,221 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+  return projects.map((p, i) => ({
+    params: { slug: p.id },
+    props: {
+      project: p,
+      prev: projects[i - 1] ?? null,
+      next: projects[i + 1] ?? null,
+    },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  prev: CollectionEntry<'projects'> | null;
+  next: CollectionEntry<'projects'> | null;
+}
+
+const { project, prev, next } = Astro.props;
+const { Content } = await render(project);
+const { title, tagline, year, role, stack, repo, link, hue, order } = project.data;
+---
+
+<Base title={`${title} — Alireza Pakdaman`} description={tagline} ogSlug={`projects/${project.id}`}>
+  <article class="project container" style={`--hue: ${hue}`}>
+    <p class="backlink"><a href="/#projects">← All projects</a></p>
+
+    <header class="project-head">
+      <div class="project-art" transition:name={`art-${project.id}`} aria-hidden="true">
+        <span class="project-glyph">{String(order).padStart(2, '0')}</span>
+      </div>
+      <p class="mono-label">{year}{role ? ` · ${role}` : ''}</p>
+      <h1 transition:name={`title-${project.id}`}>{title}</h1>
+      <p class="lede">{tagline}</p>
+      <p class="stack-chips">
+        {stack.map((s) => <span class="chip">{s}</span>)}
+      </p>
+      {
+        (repo || link) && (
+          <p class="project-links">
+            {link && (
+              <a class="btn" href={link} target="_blank" rel="noopener" data-magnetic>
+                Visit ↗
+              </a>
+            )}
+            {repo && (
+              <a class="btn btn-ghost" href={repo} target="_blank" rel="noopener" data-magnetic>
+                View source ↗
+              </a>
+            )}
+          </p>
+        )
+      }
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <nav class="project-nav" aria-label="More projects">
+      {
+        prev ? (
+          <a href={`/projects/${prev.id}`} class="pn pn-prev">
+            <span class="pn-label">← Previous</span>
+            <span class="pn-title">{prev.data.title}</span>
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        next ? (
+          <a href={`/projects/${next.id}`} class="pn pn-next">
+            <span class="pn-label">Next →</span>
+            <span class="pn-title">{next.data.title}</span>
+          </a>
+        ) : (
+          <span />
+        )
+      }
+    </nav>
+  </article>
+</Base>
+
+<style>
+  .project {
+    padding-block: 2.2rem 4rem;
+    max-width: 46rem;
+  }
+
+  .backlink {
+    margin-bottom: 1.6rem;
+  }
+
+  .backlink a {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-decoration: none;
+    color: var(--ink-2);
+  }
+
+  .backlink a:hover {
+    color: var(--accent);
+  }
+
+  .project-art {
+    position: relative;
+    aspect-ratio: 21 / 7;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    margin-bottom: 1.8rem;
+    background:
+      radial-gradient(120% 160% at 15% 0%, oklch(72% 0.14 var(--hue) / 0.55), transparent 60%),
+      radial-gradient(130% 140% at 90% 110%, oklch(55% 0.16 calc(var(--hue) + 40) / 0.5), transparent 55%),
+      linear-gradient(160deg, var(--bg-inset), var(--bg-raised));
+  }
+
+  .project-glyph {
+    position: absolute;
+    right: 1.2rem;
+    bottom: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: oklch(50% 0.16 var(--hue) / 0.5);
+    letter-spacing: -0.05em;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5.5vw, 3rem);
+    margin: 0.3rem 0 0.6rem;
+  }
+
+  .lede {
+    font-size: 1.15rem;
+    color: var(--ink-2);
+    max-width: 52ch;
+  }
+
+  .stack-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin: 0.4rem 0 1.2rem;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.6rem;
+  }
+
+  .prose {
+    margin-top: 2.2rem;
+  }
+
+  .prose :global(h2) {
+    font-size: 1.35rem;
+    margin-top: 2.2rem;
+  }
+
+  .prose :global(p),
+  .prose :global(li) {
+    color: var(--ink-2);
+  }
+
+  .prose :global(li) {
+    margin-bottom: 0.4rem;
+  }
+
+  .prose :global(strong) {
+    color: var(--ink);
+  }
+
+  .prose :global(a) {
+    color: var(--accent);
+  }
+
+  .project-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 3.5rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1.6rem;
+  }
+
+  .pn {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    text-decoration: none;
+    max-width: 46%;
+  }
+
+  .pn-next {
+    text-align: right;
+  }
+
+  .pn-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ink-3-solid);
+  }
+
+  .pn-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .pn:hover .pn-title {
+    color: var(--accent);
+  }
+</style>

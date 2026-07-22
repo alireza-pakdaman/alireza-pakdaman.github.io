@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import Playground from '../components/react/Playground.tsx';
+---
+
+<Base
+  title="Playground — Alireza Pakdaman"
+  description="A live, editable code sandbox running components from this site — spring-physics magnetic buttons and theme-aware UI, right in the browser."
+  ogSlug="playground"
+>
+  <section class="container pg">
+    <header class="pg-head">
+      <p class="mono-label">live code, not screenshots</p>
+      <h1>Component playground</h1>
+      <p class="pg-lede">
+        These are working components from this site, running in an in-browser sandbox. <strong>Edit the code on
+        the left</strong> — change <code>strength</code>, flip a <code>theme</code>, break it, fix it — and the
+        preview updates as you type.
+      </p>
+    </header>
+
+    <Playground client:only="react">
+      <div slot="fallback" class="pg-skeleton" role="status">
+        <span class="mono-label">booting sandbox…</span>
+      </div>
+    </Playground>
+
+    <aside class="pg-note card">
+      <h2>Why this page is heavier than the rest of the site</h2>
+      <p>
+        The homepage ships almost no JavaScript — Astro renders it to plain HTML. This page is the exception:
+        it loads React and an in-browser bundler (Sandpack) <em>only here</em>, so the flashy part never taxes
+        the pages recruiters actually skim. That trade-off is the whole architecture of the site:
+        <a href="/projects/this-website">read the case study</a>.
+      </p>
+    </aside>
+  </section>
+</Base>
+
+<style>
+  .pg {
+    padding-block: 2.5rem 4rem;
+  }
+
+  .pg-head {
+    max-width: 56ch;
+    margin-bottom: 2rem;
+  }
+
+  .pg-head h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin: 0.3rem 0 0.7rem;
+  }
+
+  .pg-lede {
+    color: var(--ink-2);
+    font-size: 1.05rem;
+  }
+
+  .pg-skeleton {
+    height: 480px;
+    display: grid;
+    place-content: center;
+    border: 1px dashed var(--line);
+    border-radius: 12px;
+    background: var(--bg-inset);
+  }
+
+  .pg-note {
+    margin-top: 2rem;
+    padding: 1.4rem 1.6rem;
+  }
+
+  .pg-note h2 {
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .pg-note p {
+    color: var(--ink-2);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+</style>

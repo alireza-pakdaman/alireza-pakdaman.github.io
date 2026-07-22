@@ -1,0 +1,138 @@
+---
+import { getRepos, languageStats } from '../data/github';
+import { profile } from '../data/profile';
+
+const { repos } = await getRepos();
+const langs = languageStats(repos);
+const max = Math.max(...langs.map((l) => l.count));
+const total = repos.length;
+const built = new Date().toISOString().slice(0, 10);
+
+// Chart geometry (viewBox units). Single measure → single hue; identity lives
+// on the axis labels, values as direct end labels. No legend, no grid needed.
+const BAR_H = 24;
+const GAP = 14;
+const LABEL_W = 152;
+const VALUE_W = 34;
+const CHART_W = 560;
+const PLOT_W = CHART_W - LABEL_W - VALUE_W;
+const CHART_H = langs.length * (BAR_H + GAP) - GAP;
+
+/** Bar path: square-cornered at the baseline, 4px-rounded at the data end. */
+function barPath(x: number, y: number, w: number, h: number): string {
+  const r = Math.min(4, w);
+  return `M ${x} ${y} h ${w - r} q ${r} 0 ${r} ${r} v ${h - 2 * r} q 0 ${r} -${r} ${r} h ${-(w - r)} Z`;
+}
+---
+
+<figure class="gh-chart card">
+  <figcaption class="gh-head">
+    <p class="gh-title">GitHub, measured</p>
+    <p class="gh-sub">
+      Primary language across {total} public repos · rendered at build ({built}) — no runtime requests
+    </p>
+  </figcaption>
+
+  <svg
+    viewBox={`0 0 ${CHART_W} ${CHART_H}`}
+    role="img"
+    aria-label={`Bar chart of primary languages across ${total} public GitHub repositories. ${langs
+      .map((l) => `${l.language}: ${l.count}`)
+      .join(', ')}.`}
+  >
+    {
+      langs.map((l, i) => {
+        const w = Math.max((l.count / max) * PLOT_W, 6);
+        const y = i * (BAR_H + GAP);
+        return (
+          <g>
+            <title>{`${l.language}: ${l.count} ${l.count === 1 ? 'repo' : 'repos'}`}</title>
+            <text class="gh-label" x={LABEL_W - 12} y={y + BAR_H / 2} text-anchor="end" dominant-baseline="central">
+              {l.language}
+            </text>
+            <path class="gh-bar" d={barPath(LABEL_W, y, w, BAR_H)} />
+            <text class="gh-value" x={LABEL_W + w + 9} y={y + BAR_H / 2} dominant-baseline="central">
+              {l.count}
+            </text>
+          </g>
+        );
+      })
+    }
+  </svg>
+
+  <table class="visually-hidden">
+    <caption>Primary language across public GitHub repositories</caption>
+    <thead>
+      <tr><th scope="col">Language</th><th scope="col">Repositories</th></tr>
+    </thead>
+    <tbody>
+      {
+        langs.map((l) => (
+          <tr>
+            <td>{l.language}</td>
+            <td>{l.count}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  <p class="gh-link">
+    <a href={profile.github} target="_blank" rel="noopener">Browse the repos →</a>
+  </p>
+</figure>
+
+<style>
+  .gh-chart {
+    margin: 0;
+    padding: 1.4rem 1.5rem 1.2rem;
+  }
+
+  .gh-head {
+    margin-bottom: 1.2rem;
+  }
+
+  .gh-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin: 0 0 0.15rem;
+  }
+
+  .gh-sub {
+    color: var(--ink-3-solid);
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    margin: 0;
+  }
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .gh-bar {
+    fill: var(--accent);
+  }
+
+  .gh-label {
+    fill: var(--ink-2);
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+
+  .gh-value {
+    fill: var(--ink-2);
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+
+  .gh-link {
+    margin: 0.9rem 0 0;
+  }
+
+  .gh-link a {
+    font-size: 0.9rem;
+  }
+</style>

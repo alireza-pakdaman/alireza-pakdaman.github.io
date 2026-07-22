@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="404 — Alireza Pakdaman" description="Page not found.">
+  <section class="container nf">
+    <p class="mono-label">error 404</p>
+    <h1>command not found<span class="brand-cursor">_</span></h1>
+    <p class="nf-text">
+      This page doesn’t exist — or it did, in the previous version of this site, and has since been
+      refactored away.
+    </p>
+    <p class="nf-actions">
+      <a class="btn" href="/" data-magnetic>Back home</a>
+      <a class="btn btn-ghost" href="/#projects">See projects</a>
+    </p>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    min-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: 4rem;
+  }
+
+  .nf h1 {
+    font-family: var(--font-mono);
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    margin: 0.4rem 0 0.8rem;
+  }
+
+  .nf-text {
+    color: var(--ink-2);
+    max-width: 46ch;
+  }
+
+  .nf-actions {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+</style>
