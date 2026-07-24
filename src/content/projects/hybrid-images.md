@@ -12,7 +12,7 @@ hue: 200
 
 A classic computer-vision build: hybrid images combine the low-frequency
 components of one image with the high-frequency components of another, so the
-picture you see **changes with viewing distance** — one face up close, a
+picture you see **changes with viewing distance:** one face up close, a
 different one from across the room.
 
 ## How it works

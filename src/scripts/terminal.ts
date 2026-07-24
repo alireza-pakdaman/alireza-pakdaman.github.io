@@ -80,7 +80,7 @@ async function run(raw: string) {
       print(HELP);
       break;
     case 'about':
-      print('Alireza Pakdaman — software engineer.');
+      print('Alireza Pakdaman, software engineer.');
       print('CS @ Ontario Tech (2027). Data analysis, C++, generative AI.');
       print('Currently: Data Analyst @ Ontario Tech University.');
       break;
@@ -95,7 +95,7 @@ async function run(raw: string) {
         closeTerminal();
         navigate(`/projects/${p.slug}`);
       } else {
-        print(`no such project: ${arg || '(none)'} — try \`projects\``, 'term-err');
+        print(`no such project: ${arg || '(none)'}. try \`projects\``, 'term-err');
       }
       break;
     }
@@ -127,7 +127,7 @@ async function run(raw: string) {
     case 'email':
       try {
         await navigator.clipboard.writeText(data.email);
-        print(`${data.email} — copied to clipboard`, 'term-ok');
+        print(`${data.email} copied to clipboard`, 'term-ok');
       } catch {
         print(data.email);
       }
@@ -147,7 +147,7 @@ async function run(raw: string) {
       closeTerminal();
       break;
     default:
-      print(`command not found: ${cmd} — try \`help\``, 'term-err');
+      print(`command not found: ${cmd}. try \`help\``, 'term-err');
   }
 }
 
@@ -165,7 +165,7 @@ export function openTerminal() {
 
   if (!booted) {
     booted = true;
-    print('alirezapakdaman.com — v2.0.0');
+    print('alirezapakdaman.com v2.0.0');
     print('type `help` to get started.');
     print('');
 

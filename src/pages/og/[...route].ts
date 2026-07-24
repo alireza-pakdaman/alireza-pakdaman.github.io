@@ -10,7 +10,7 @@ const pages: Record<string, { title: string; description: string }> = {
   },
   playground: {
     title: 'Component Playground',
-    description: 'Live, editable code — components from this site running in your browser',
+    description: 'Live, editable code. Components from this site running in your browser',
   },
   ...Object.fromEntries(
     projects.map((p) => [`projects/${p.id}`, { title: p.data.title, description: p.data.tagline }])

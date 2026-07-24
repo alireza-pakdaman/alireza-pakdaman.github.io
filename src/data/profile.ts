@@ -2,7 +2,7 @@ export const profile = {
   name: 'Alireza Pakdaman',
   headline: 'Software Engineer',
   tagline:
-    'CS undergrad at Ontario Tech building software with a data & generative-AI edge — from C++ analysis pipelines to AI visuals for live opera.',
+    'CS undergrad at Ontario Tech building software with a data and generative-AI edge, from C++ analysis pipelines to AI visuals for live opera.',
   location: 'Greater Toronto Area, Canada',
   email: 'alirezapakdaman23@gmail.com',
   github: 'https://github.com/alireza-pakdaman',
@@ -43,7 +43,7 @@ export const experience: Role[] = [
     end: 'Oct 2025',
     location: 'Oshawa, ON',
     summary:
-      'Sole producer and developer of the generative-AI pipeline for “Meladramma-AI,” a live opera production — built GAN/diffusion models for unique vocal textures and AI-generated stage visuals. Worked directly with the Dean of Information Technology and the Faculty of Arts & Humanities to integrate AI into the production and elevate the audience experience.',
+      'Sole producer and developer of the generative-AI pipeline for “Meladramma-AI,” a live opera production. Built GAN and diffusion models for unique vocal textures and AI-generated stage visuals. Worked directly with Professor Carolyn (Bland) McGregor AM, Dean of the Faculty of Information Technology, and with the Faculty of Arts & Humanities to integrate AI into the production and elevate the audience experience.',
     tags: ['GANs', 'Diffusion models', 'Generative AI'],
     links: [
       {
@@ -59,7 +59,7 @@ export const experience: Role[] = [
     end: 'Apr 2025',
     location: 'Toronto, ON',
     summary:
-      'Full-stack development on an employee management system — frontend features and API integration on a production codebase.',
+      'Full-stack development on an employee management system, building frontend features and API integration on a production codebase.',
     tags: ['Full-stack', 'React', 'REST APIs'],
     links: [
       {
@@ -75,7 +75,7 @@ export const experience: Role[] = [
     end: 'Jan 2025',
     location: 'Ontario, Canada',
     summary:
-      'Hands-on software development — coding, debugging, and shipping features in a small, fast-moving team.',
+      'Coding, debugging, and shipping features in a small, fast-moving team.',
     tags: ['Software engineering'],
   },
   {
@@ -85,7 +85,7 @@ export const experience: Role[] = [
     end: 'Jan 2025',
     location: 'Toronto, ON',
     summary:
-      'Kept systems running for a downtown Toronto office — troubleshooting, infrastructure, and technical support. Recognized as Employee of the Year.',
+      'Kept systems running for a downtown Toronto office, covering troubleshooting, infrastructure, and technical support. Recognized as Employee of the Year.',
     tags: ['IT', 'Support'],
     links: [{ label: 'Certificate of Excellence', href: '/certificates/nordvern-employee-of-the-year.jpg' }],
   },
@@ -109,16 +109,22 @@ export const education = {
 
 export const certifications: { label: string; href?: string }[] = [
   {
-    label: 'Certificate of Excellence — Nordvern (Employee of the Year)',
+    label: 'Certificate of Excellence, Nordvern (Employee of the Year)',
     href: '/certificates/nordvern-employee-of-the-year.jpg',
   },
   {
-    label: 'Seize the Moment — Software Development Training',
-    href: 'https://credsverse.com/credentials/bedff4d7-5e5a-4262-b1dc-2c7d36e0dfea',
+    label: 'Seize the Moment: Software Development Training',
+    href: 'https://verified.sertifier.com/en/verify/94363823464834/',
   },
-  { label: 'SDF-TS Training Cohort 2 — Certificate of Completion' },
-  { label: 'TryHackMe — Pre Security' },
-  { label: 'TryHackMe — Introduction to Cyber Security' },
+  {
+    label: 'TryHackMe: Pre Security',
+    href: 'https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-KERN8WSWK6.png',
+  },
+  {
+    label: 'TryHackMe: Introduction to Cyber Security',
+    href: 'https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-9IQXQLWNNQ.png',
+  },
+  { label: 'SDF-TS Training Cohort 2: Certificate of Completion' },
 ];
 
 export const skills: { group: string; items: string[] }[] = [

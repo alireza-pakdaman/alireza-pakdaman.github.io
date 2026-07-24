@@ -15,13 +15,13 @@ fit time-series models, and serve predictions through an interactive UI.
 
 ## The pipeline
 
-- **Data** — automated retrieval and cleaning of historical price series.
-- **Modeling** — classical and ML-based forecasting, evaluated against naive
+- **Data:** automated retrieval and cleaning of historical price series.
+- **Modeling:** classical and ML-based forecasting, evaluated against naive
   baselines (the honest test most forecast demos skip).
-- **Interface** — an interactive app where a user picks a ticker and horizon
+- **Interface:** an interactive app where a user picks a ticker and horizon
   and sees the forecast with its uncertainty.
 
-Built as a learning project in applied ML — the emphasis is on a clean
+Built as a learning project in applied ML, so the emphasis is on a clean
 pipeline and honest evaluation, not on beating the market.
 
 <!-- TODO(Alireza): confirm the framework (Streamlit? Flask?), the models used

@@ -6,7 +6,7 @@ import StatCard from './StatCard';
 import './styles.css';
 
 // ────────────────────────────────────────────────────────────
-//  This is live code. Edit the props below — the preview
+//  This is live code. Edit the props below and the preview
 //  updates as you type. Try strength={0.8}, theme="dark",
 //  or change the values entirely.
 // ────────────────────────────────────────────────────────────

@@ -20,7 +20,7 @@ const portraits = import.meta.glob<{ default: ImageMetadata }>(
 const portrait = Object.values(portraits)[0]?.default;
 
 const description =
-  'Alireza Pakdaman — software engineer and CS undergrad at Ontario Tech University (2027). C++, Python, TypeScript; data analysis and generative AI, from statistical pipelines to AI visuals for live opera.';
+  'Alireza Pakdaman is a software engineer and CS undergrad at Ontario Tech University (2027). C++, Python, TypeScript; data analysis and generative AI, from statistical pipelines to AI visuals for live opera.';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -53,7 +53,7 @@ const jsonLd = {
       </p>
       <div class="hero-actions">
         <a class="btn" href="#projects" data-magnetic>View projects</a>
-        <a class="btn btn-ghost" href="/resume.pdf" data-magnetic>Resume — PDF</a>
+        <a class="btn btn-ghost" href="/resume.pdf" data-magnetic>Resume (PDF)</a>
       </div>
       <p class="hero-contact">
         <a href={profile.github} target="_blank" rel="noopener">GitHub</a>
@@ -94,8 +94,8 @@ const jsonLd = {
       {featured.map((p) => <ProjectCard project={p} />)}
     </div>
     <p class="section-foot">
-      Want the interactive version? Try the <a href="/playground">component playground</a> — live, editable code
-      from this site.
+      Want the interactive version? Try the <a href="/playground">component playground</a>, with live, editable
+      code from this site.
     </p>
   </section>
 
@@ -172,7 +172,7 @@ const jsonLd = {
       <div>
         <h2 id="contact-h">Let’s build something.</h2>
         <p>
-          I’m looking for teams where I can ship real software and keep learning — internships, co-ops, and
+          I’m looking for teams where I can ship real software and keep learning: internships, co-ops, and
           early-career roles.
         </p>
       </div>

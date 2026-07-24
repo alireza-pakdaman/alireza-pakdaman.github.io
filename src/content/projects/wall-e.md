@@ -12,7 +12,7 @@ hue: 45
 
 A Python project exploring robotics and automation.
 
-<!-- TODO(Alireza): this page is a stub — describe what wall-e actually does
+<!-- TODO(Alireza): this page is a stub. Describe what wall-e actually does
      (simulation? hardware? CV?), the stack, and what you learned. Add images
      to /src/assets/images. If it's not portfolio-worthy, delete this file and
      it disappears from the site automatically. -->

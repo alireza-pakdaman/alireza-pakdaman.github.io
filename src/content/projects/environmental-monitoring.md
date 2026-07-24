@@ -16,11 +16,11 @@ sensor data.
 
 ## Highlights
 
-- **SVD for structure** — decomposing sensor matrices to separate dominant
+- **SVD for structure:** decomposing sensor matrices to separate dominant
   environmental patterns from noise.
-- **ML on top** — models trained on the reduced representations for detection
+- **ML on top:** models trained on the reduced representations for detection
   and prediction.
-- **C++ throughout** — memory-conscious numerical code, not a Python wrapper.
+- **C++ throughout:** memory-conscious numerical code, not a Python wrapper.
 
 This is the project behind the "C++" on my resume: numerical linear algebra
 implemented close to the metal.
