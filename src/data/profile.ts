@@ -124,7 +124,10 @@ export const certifications: { label: string; href?: string }[] = [
     label: 'TryHackMe: Introduction to Cyber Security',
     href: 'https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-9IQXQLWNNQ.png',
   },
-  { label: 'SDF-TS Training Cohort 2: Certificate of Completion' },
+  {
+    label: 'SDF-TS Training Cohort 2: Certificate of Completion',
+    href: 'https://credsverse.com/credentials/bedff4d7-5e5a-4262-b1dc-2c7d36e0dfea',
+  },
 ];
 
 export const skills: { group: string; items: string[] }[] = [
