@@ -148,7 +148,19 @@ const jsonLd = {
       <div class="card edu-card reveal">
         <h3 class="certs-title">Certifications</h3>
         <ul class="certs-list">
-          {certifications.map((c) => <li>{c}</li>)}
+          {
+            certifications.map((c) => (
+              <li>
+                {c.href ? (
+                  <a href={c.href} target="_blank" rel="noopener">
+                    {c.label} <span aria-hidden="true">↗</span>
+                  </a>
+                ) : (
+                  c.label
+                )}
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>

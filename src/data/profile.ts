@@ -21,6 +21,8 @@ export interface Role {
   location?: string;
   summary?: string;
   tags?: string[];
+  /** Optional proof links (verifiable credentials, certificates, production pages). */
+  links?: { label: string; href: string }[];
 }
 
 export const experience: Role[] = [
@@ -31,7 +33,7 @@ export const experience: Role[] = [
     end: 'Present',
     location: 'Oshawa, ON',
     summary:
-      'Statistical and exploratory data analysis for university research projects — turning complex datasets into actionable insights.',
+      'Analyze student and financial data and produce data-driven reports for university stakeholders.',
     tags: ['Statistics', 'EDA', 'Python'],
   },
   {
@@ -41,8 +43,14 @@ export const experience: Role[] = [
     end: 'Oct 2025',
     location: 'Oshawa, ON',
     summary:
-      'Developed generative AI models (GANs, diffusion) for a live opera production — unique vocal textures and AI-generated visual elements for the stage.',
+      'Sole producer and developer of the generative-AI pipeline for “Meladramma-AI,” a live opera production — built GAN/diffusion models for unique vocal textures and AI-generated stage visuals. Worked directly with the Dean of Information Technology and the Faculty of Arts & Humanities to integrate AI into the production and elevate the audience experience.',
     tags: ['GANs', 'Diffusion models', 'Generative AI'],
+    links: [
+      {
+        label: 'Meladramma-AI production',
+        href: 'https://businessandit.ontariotechu.ca/fbit-xo/arts-and-humanities/meladramma-ai1.php',
+      },
+    ],
   },
   {
     org: 'Wouessi Digital',
@@ -53,6 +61,12 @@ export const experience: Role[] = [
     summary:
       'Full-stack development on an employee management system — frontend features and API integration on a production codebase.',
     tags: ['Full-stack', 'React', 'REST APIs'],
+    links: [
+      {
+        label: 'Verify credential',
+        href: 'https://credsverse.com/credentials/bedff4d7-5e5a-4262-b1dc-2c7d36e0dfea',
+      },
+    ],
   },
   {
     org: 'Dexlab',
@@ -71,8 +85,9 @@ export const experience: Role[] = [
     end: 'Jan 2025',
     location: 'Toronto, ON',
     summary:
-      'Kept systems running for a downtown Toronto office — troubleshooting, infrastructure, and technical support.',
+      'Kept systems running for a downtown Toronto office — troubleshooting, infrastructure, and technical support. Recognized as Employee of the Year.',
     tags: ['IT', 'Support'],
+    links: [{ label: 'Certificate of Excellence', href: '/certificates/nordvern-employee-of-the-year.jpg' }],
   },
   {
     org: 'Alphesda Interactive',
@@ -92,12 +107,18 @@ export const education = {
   end: 'Jun 2027 (expected)',
 };
 
-export const certifications = [
-  'SDF-TS Training Cohort 2 — Certificate of Completion',
-  'Certificate of Excellence',
-  'TryHackMe — Pre Security',
-  'TryHackMe — Introduction to Cyber Security',
-  'Seize the Moment — Software Development Training',
+export const certifications: { label: string; href?: string }[] = [
+  {
+    label: 'Certificate of Excellence — Nordvern (Employee of the Year)',
+    href: '/certificates/nordvern-employee-of-the-year.jpg',
+  },
+  {
+    label: 'Seize the Moment — Software Development Training',
+    href: 'https://credsverse.com/credentials/bedff4d7-5e5a-4262-b1dc-2c7d36e0dfea',
+  },
+  { label: 'SDF-TS Training Cohort 2 — Certificate of Completion' },
+  { label: 'TryHackMe — Pre Security' },
+  { label: 'TryHackMe — Introduction to Cyber Security' },
 ];
 
 export const skills: { group: string; items: string[] }[] = [

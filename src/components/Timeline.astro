@@ -23,6 +23,15 @@ import { experience } from '../data/profile';
               ))}
             </p>
           )}
+          {r.links && (
+            <p class="tl-links">
+              {r.links.map((l) => (
+                <a href={l.href} target="_blank" rel="noopener">
+                  {l.label} <span aria-hidden="true">↗</span>
+                </a>
+              ))}
+            </p>
+          )}
         </div>
       </li>
     ))
@@ -122,5 +131,25 @@ import { experience } from '../data/profile';
     gap: 0.4rem;
     flex-wrap: wrap;
     margin: 0;
+  }
+
+  .tl-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 0.6rem 0 0;
+  }
+
+  .tl-links a {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: var(--accent);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease;
+  }
+
+  .tl-links a:hover {
+    border-color: var(--accent);
   }
 </style>
