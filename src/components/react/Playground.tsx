@@ -29,7 +29,7 @@ export default function App() {
 
 const MAGNETIC = `import { useRef, useEffect } from 'react';
 
-// The same spring physics as the cursor on arshiatech.me,
+// The same spring physics as the cursor on alirezapakdaman.com,
 // as a reusable component. No animation library.
 export default function MagneticButton({
   strength = 0.35, // how hard the pull is (0–1)

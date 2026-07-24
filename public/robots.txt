@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://arshiatech.me/sitemap-index.xml
+Sitemap: https://alirezapakdaman.com/sitemap-index.xml

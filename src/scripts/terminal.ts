@@ -165,14 +165,14 @@ export function openTerminal() {
 
   if (!booted) {
     booted = true;
-    print('arshiatech.me — v2.0.0');
+    print('alirezapakdaman.com — v2.0.0');
     print('type `help` to get started.');
     print('');
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const value = input.value;
-      print(`visitor@arshiatech:~$ ${value}`, 'term-echo');
+      print(`visitor@alirezapakdaman:~$ ${value}`, 'term-echo');
       if (value.trim()) {
         history.push(value);
         historyIdx = history.length;

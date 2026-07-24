@@ -7,7 +7,7 @@ stack: ['Astro', 'TypeScript', 'React', 'View Transitions API', 'GitHub Actions'
 featured: true
 order: 6
 repo: 'https://github.com/alireza-pakdaman/alireza-pakdaman.github.io'
-link: 'https://arshiatech.me'
+link: 'https://alirezapakdaman.com'
 hue: 222
 ---
 

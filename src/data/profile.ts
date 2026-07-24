@@ -9,7 +9,7 @@ export const profile = {
   githubUser: 'alireza-pakdaman',
   linkedin: 'https://www.linkedin.com/in/alirezapakdaman',
   resume: '/resume.pdf',
-  site: 'https://arshiatech.me',
+  site: 'https://alirezapakdaman.com',
   gradYear: 2027,
 } as const;
 

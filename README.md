@@ -1,7 +1,7 @@
-# arshiatech.me
+# alirezapakdaman.com
 
 Personal portfolio of **Alireza Pakdaman** — software engineer, CS @ Ontario
-Tech University ('27). Live at [arshiatech.me](https://arshiatech.me).
+Tech University ('27). Live at [alirezapakdaman.com](https://alirezapakdaman.com).
 
 ## What's in here
 

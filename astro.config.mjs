@@ -4,7 +4,7 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://arshiatech.me',
+  site: 'https://alirezapakdaman.com',
   trailingSlash: 'never',
   integrations: [react(), sitemap()],
   build: {
